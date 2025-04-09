@@ -1,4 +1,8 @@
 #include "ArrayList.h"
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 ArrayList::ArrayList(int initCapacity)
     : capacity(initCapacity), length(0)                
@@ -25,4 +29,20 @@ void ArrayList::push_back(const int& value) {
         resize();
     }
     array[length++] = value;
+}
+
+int& ArrayList::operator[](int index) {        
+    if (index < 0 || index >= length) {
+        cerr << "Indeks poza zakresem!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    return array[index];
+}
+
+int ArrayList::size() const {                  
+    return length;
+}
+
+int ArrayList::getCapacity() const {           
+    return capacity;
 }

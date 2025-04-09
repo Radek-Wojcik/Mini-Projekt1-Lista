@@ -13,6 +13,9 @@ public:
     ~ArrayList();
 
     void push_back(const int& value);
+    int& operator[](int index);            
+    int size() const;                      
+    int getCapacity() const;               
 };
 
 #endif // ARRAYLIST_H
