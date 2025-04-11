@@ -1,7 +1,7 @@
 #pragma once
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
-
+#include<vector>
 
 struct Node {
 	int data;
@@ -24,7 +24,7 @@ public:
 	void pop_front();
 	void pop_back();
 	void pop_index(int index);
-	//Node search(int value);
+	std::vector<int> search(int value);
 	~LinkedList();
 };
 

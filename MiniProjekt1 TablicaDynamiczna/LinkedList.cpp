@@ -1,6 +1,6 @@
 #include"LinkedList.h"
 #include<iostream>
-
+#include<vector>
 
 LinkedList::LinkedList() : head(nullptr), tail(nullptr), size(0) {}
 
@@ -86,7 +86,6 @@ void LinkedList::pop_back() {
 }
 
 void LinkedList::pop_index(int index) {
-	
 	if (index == 0) {
 		pop_front();
 		return;
@@ -103,6 +102,36 @@ void LinkedList::pop_index(int index) {
 	current->next = temp->next;
 	delete temp;
 	size--;
+}
+
+std::vector<int> LinkedList::search(int value) {
+	std::vector<int> indices;
+	Node* current = head;
+
+	int index = 0;
+	while (current != nullptr) {
+		if (current->data == value) {
+			indices.push_back(index);
+		}
+		current = current->next;
+		index++;
+	}
+
+	if (indices.empty()) {
+		indices.push_back(-1);
+	}
+
+	// Do testow wyswietl wektor
+	std::cout << "Indices: [";
+	for (size_t i = 0; i < indices.size(); i++) {
+		std::cout << indices[i];
+		if (i < indices.size() - 1) {
+			std::cout << ", ";
+		}
+	}
+	std::cout << "]" << std::endl;
+
+	return indices;
 }
 
 //funkcja do testów
