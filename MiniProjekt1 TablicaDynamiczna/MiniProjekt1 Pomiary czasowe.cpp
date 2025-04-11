@@ -3,6 +3,7 @@
 #include <ctime>
 #include <chrono>
 #include <fstream>
+#include <vector>
 #include "ArrayList.h"
 
 using namespace std;
@@ -42,8 +43,64 @@ int main() {
 
 // ======= TEST TABLICY DYNAMICZNEJ =======
 void testArrayList() {
-    
+    int iterations = 10;
+
+    // Wczytanie danych z pliku "Liczby.txt"
+    ifstream file("Liczby.txt");
+    if (!file) {
+        cerr << "Nie mozna otworzyc pliku Liczby.txt!" << endl;
+        return;
+    }
+    vector<int> dane;
+    int liczba;
+    while (file >> liczba) {
+        dane.push_back(liczba);
+    }
+    file.close();
+
+    long  SumPushFront = 0;
+    long  SumPushBack = 0;
+    long  SumInsertRandom = 0;
+
+    for (int i = 0; i < iterations; ++i) {
+        
+        // --- Test push_front ---
+        ArrayList listaPushFront(dane.size());      // Stworzenie kopii struktury ArrayList z danymi
+        for (size_t j = 0; j < dane.size(); ++j) {
+            listaPushFront.push_back(dane[j]);
+        }
+        auto start = high_resolution_clock::now();  // Mierzenie czasu
+        listaPushFront.push_front(1);  
+        auto stop = high_resolution_clock::now();
+        SumPushFront += duration_cast<microseconds>(stop - start).count();
+
+        // --- Test push_back ---
+        ArrayList listaPushBack(dane.size());
+        for (size_t j = 0; j < dane.size(); ++j) {
+            listaPushBack.push_back(dane[j]);
+        }
+        start = high_resolution_clock::now();
+        listaPushBack.push_back(1);  
+        stop = high_resolution_clock::now();
+        SumPushBack += duration_cast<microseconds>(stop - start).count();
+
+        // --- Test insert_random ---
+        ArrayList listaInsertRandom(dane.size());
+        for (size_t j = 0; j < dane.size(); ++j) {
+            listaInsertRandom.push_back(dane[j]);
+        }
+        start = high_resolution_clock::now();
+        listaInsertRandom.insert_random(1);  
+        stop = high_resolution_clock::now();
+        SumInsertRandom += duration_cast<microseconds>(stop - start).count();
+    }
+
+    // Obliczenie i wyświetlenie średnich czasów wykonania dla poszczególnych operacji
+    cout << "Sredni czas push_front: " << SumPushFront / iterations << " mikrosekund" << endl;
+    cout << "Sredni czas push_back: " << SumPushBack / iterations << " mikrosekund" << endl;
+    cout << "Sredni czas insert_random: " << SumInsertRandom / iterations << " mikrosekund" << endl;
 }
+
 // ======= TEST LISTY JEDNOKIERUNKOWEJ  =======
 void testSingleLinkedList() {
     // TODO
