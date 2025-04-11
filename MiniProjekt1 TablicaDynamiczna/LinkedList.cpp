@@ -66,7 +66,7 @@ void LinkedList::pop_front() {
 	head = head->next;
 	delete temp;
 	size--;
-	if (head = nullptr) tail = nullptr; //je¿eli lista po usuniêciu pusta, zerujemy tail
+	if (head == nullptr) tail = nullptr; //je¿eli lista po usuniêciu pusta, zerujemy tail
 }
 
 void LinkedList::pop_back() {
@@ -86,6 +86,7 @@ void LinkedList::pop_back() {
 }
 
 void LinkedList::pop_index(int index) {
+	
 	if (index == 0) {
 		pop_front();
 		return;
