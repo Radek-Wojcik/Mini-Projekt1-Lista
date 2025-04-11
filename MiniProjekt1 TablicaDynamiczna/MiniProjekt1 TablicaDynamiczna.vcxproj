@@ -131,6 +131,7 @@
     <ClCompile Include="ArrayList.h" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="MiniProjekt1 Pomiary czasowe.cpp" />
+    <ClCompile Include="testCzyListaDziala.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkedList.h" />

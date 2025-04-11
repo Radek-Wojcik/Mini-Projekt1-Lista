@@ -13,17 +13,19 @@ class LinkedList {
 private:
 	Node* head;
 	Node* tail;
+	int size;
 public:
-	LinkedList() {}
-	int size = 0;
+	LinkedList();
+	int get_size() const;
 	void push_front(int value);
 	void push_back(int value);
 	void push_index(int value, int index);
-	void pop_front();
+	void show() const; //funkcja do testów czy lista dzia³a
+	/*void pop_front();
 	void pop_back();
 	void pop_index(int index);
-	Node search(int value);
-	~LinkedList() {}
+	Node search(int value);*/
+	~LinkedList();
 };
 
 #endif //LINKEDLIST_H

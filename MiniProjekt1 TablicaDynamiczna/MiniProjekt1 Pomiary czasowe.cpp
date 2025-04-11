@@ -1,4 +1,4 @@
-﻿#include <iostream>
+﻿/*#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
@@ -138,5 +138,4 @@ void generateRandomFile(const string& filename, int count) {
 
     file.close();
     cout << "Wygenerowano plik " << filename << " z " << count << " liczbami losowymi." << endl;
-}
-//test githuba
+}*/

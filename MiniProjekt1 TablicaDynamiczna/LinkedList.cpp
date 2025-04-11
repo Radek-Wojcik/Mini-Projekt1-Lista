@@ -2,7 +2,11 @@
 #include<iostream>
 
 
-LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
+LinkedList::LinkedList() : head(nullptr), tail(nullptr), size(0) {}
+
+int LinkedList::get_size() const {
+	return size;
+}
 
 LinkedList::~LinkedList() {
 	while (head != nullptr) {
@@ -47,11 +51,21 @@ void LinkedList::push_index(int value, int index) {
 		Node* newNode = new Node(value, nullptr);
 		Node* current = head;
 		int i = 0;
-		for (i; i < index; i++) {    //dobieramy siê do indeksu na który chcecmy dodaæ wartoœæ
+		for (i; i < index-1; i++) {    //dobieramy siê do indeksu na który chcecmy dodaæ wartoœæ
 			current = current->next;
 		}
-		newNode->next = current;
+		newNode->next = current->next;
 		current->next = newNode;
 		size++;
 	}
+}
+
+//funkcja do testów
+void LinkedList::show() const {
+	Node* temp = head;
+	while (temp) {
+		std::cout << temp->data << " -> ";
+		temp = temp->next;
+	}
+	std::cout << std::endl;
 }
