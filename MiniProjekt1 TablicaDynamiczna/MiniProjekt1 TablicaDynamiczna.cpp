@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     ArrayList list(5);
     for (int i = 0; i < 10000; ++i) {
-        list.push_back(i);
+        list.push_front(i);
         cout << "Rozmiar: " << list.size() << "|| Pojemnosc: " << list.getCapacity() << endl;
     }
     cout << "Zawartosc tablicy: ";

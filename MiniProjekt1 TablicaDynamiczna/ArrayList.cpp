@@ -28,12 +28,25 @@ void ArrayList::resize() {
     array = newArray;
 }
 
-// Metoda dodaj¹ca element
+// Metoda dodaj¹ca element na koniec
 void ArrayList::push_back(const int& value) {           
     if (length == capacity) {                           // Sprawdzenie, czy tablica jest pe³na
         resize();
     }
     array[length++] = value;                            // Dodanie elementu i zwiêkszenie licznika
+}
+
+// Metoda dodaj¹ca element na pocz¹tek
+void ArrayList::push_front(const int& value) {
+    if (length == capacity) {                           // Je¿eli tablica jest pe³na, zwiêkszamy pojemnoœæ
+        resize();
+    }
+    // Przesuwamy wszystkie elementy o jeden indeks do przodu
+    for (int i = length; i > 0; --i) {
+        array[i] = array[i - 1];
+    }
+    array[0] = value;                                  // Wstawiamy nowy element na pocz¹tek
+    ++length;                                          // Zwiêkszamy licznik elementów
 }
 
 // Zabezpieczenie przed odow³aniem do elementu spoza zakresu
