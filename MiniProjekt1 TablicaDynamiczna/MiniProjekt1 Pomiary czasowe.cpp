@@ -139,3 +139,4 @@ void generateRandomFile(const string& filename, int count) {
     file.close();
     cout << "Wygenerowano plik " << filename << " z " << count << " liczbami losowymi." << endl;
 }
+//test githuba
