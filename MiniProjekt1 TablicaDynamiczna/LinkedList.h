@@ -6,7 +6,6 @@
 struct Node {
 	int data;
 	Node* next;
-	Node(int value = 0) : data(value), next(nullptr) {}
 	Node(int value, Node* tempNext) : data(value), next(tempNext) {}
 };
 
@@ -16,6 +15,7 @@ private:
 	Node* tail;
 public:
 	LinkedList() {}
+	int size = 0;
 	void push_front(int value);
 	void push_back(int value);
 	void push_index(int value, int index);
