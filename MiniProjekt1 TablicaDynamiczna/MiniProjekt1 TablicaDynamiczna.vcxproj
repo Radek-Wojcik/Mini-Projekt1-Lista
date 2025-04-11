@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ArrayList.cpp" />
     <ClCompile Include="ArrayList.h" />
-    <ClCompile Include="MiniProjekt1 TablicaDynamiczna.cpp" />
+    <ClCompile Include="MiniProjekt1 Pomiary czasowe.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MiniProjekt1 TablicaDynamiczna.cpp">
+    <ClCompile Include="MiniProjekt1 Pomiary czasowe.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="ArrayList.h">
