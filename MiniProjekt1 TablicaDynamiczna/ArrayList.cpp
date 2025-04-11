@@ -1,6 +1,8 @@
-#include "ArrayList.h"
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
+
+#include "ArrayList.h"
 
 using namespace std;
 
@@ -28,12 +30,40 @@ void ArrayList::resize() {
     array = newArray;
 }
 
-// Metoda dodaj¹ca element
+// Metoda dodaj¹ca element na koniec
 void ArrayList::push_back(const int& value) {           
     if (length == capacity) {                           // Sprawdzenie, czy tablica jest pe³na
         resize();
     }
     array[length++] = value;                            // Dodanie elementu i zwiêkszenie licznika
+}
+
+// Metoda dodaj¹ca element na pocz¹tek
+void ArrayList::push_front(const int& value) {
+    if (length == capacity) {                           // Je¿eli tablica jest pe³na, zwiêkszamy pojemnoœæ
+        resize();
+    }
+    
+    for (int i = length; i > 0; --i) {                  // Przesuwamy wszystkie elementy o jeden indeks do przodu
+        array[i] = array[i - 1];
+    }
+    array[0] = value;                                   // Wstawiamy nowy element na pocz¹tek
+    ++length;                                           // Zwiêkszamy licznik elementów
+}
+
+// Metoda dodaj¹ca element w losowe miejsce tablicy
+void ArrayList::insert_random(const int& value) {
+    if (length == capacity) {                          // Sprawdzenie pojemnoœci
+        resize();
+    }
+
+    int index = rand() % (length + 1);                 // Losowy index
+
+    for (int i = length; i > index; --i) {             // Przesuniêcie elementów w górê aby zrobiæ miejsce na nowy 
+        array[i] = array[i - 1];
+    }
+    array[index] = value;                              // Wstaw nowy element na losowej pozycji
+    ++length;
 }
 
 // Zabezpieczenie przed odow³aniem do elementu spoza zakresu

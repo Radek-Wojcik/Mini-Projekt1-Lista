@@ -13,6 +13,8 @@ public:
     ~ArrayList();
 
     void push_back(const int& value);
+    void push_front(const int& value);
+    void insert_random(const int& value);
     int& operator[](int index);            
     int size() const;                      
     int getCapacity() const;               
