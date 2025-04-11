@@ -50,14 +50,58 @@ void LinkedList::push_index(int value, int index) {
 	else {
 		Node* newNode = new Node(value, nullptr);
 		Node* current = head;
-		int i = 0;
-		for (i; i < index-1; i++) {    //dobieramy siê do indeksu na który chcecmy dodaæ wartoœæ
+		for (int i = 0; i < index-1; i++) {    //dobieramy siê do indeksu na który chcecmy dodaæ wartoœæ
 			current = current->next;
 		}
 		newNode->next = current->next;
 		current->next = newNode;
 		size++;
 	}
+}
+
+void LinkedList::pop_front() {
+	if (head == nullptr) return; //jeœli lista jest pusta
+	Node* temp;
+	temp = head;
+	head = head->next;
+	delete temp;
+	size--;
+	if (head = nullptr) tail = nullptr; //je¿eli lista po usuniêciu pusta, zerujemy tail
+}
+
+void LinkedList::pop_back() {
+	if (head == nullptr) return; //jeœli lista jest pusta
+	if (head->next == nullptr) { //jeœli lista zawiera jeden element pop_back = pop_front
+		pop_front();
+		return;
+	}
+	Node* current=head;
+	while (current->next != tail) {
+		current = current->next;
+	}
+	delete tail;
+	tail = current;
+	tail->next = nullptr;
+	size--;
+}
+
+void LinkedList::pop_index(int index) {
+	if (index == 0) {
+		pop_front();
+		return;
+	}
+	if (index == size - 1) {
+		pop_back();
+		return;
+	}
+	Node* current = head;
+	for (int i = 0; i < index - 1; i++) {    //dobieramy siê do indeksu na który chcecmy dodaæ wartoœæ
+		current = current->next;
+	}
+	Node* temp = current->next;
+	current->next = temp->next;
+	delete temp;
+	size--;
 }
 
 //funkcja do testów

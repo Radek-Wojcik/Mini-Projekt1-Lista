@@ -21,10 +21,10 @@ public:
 	void push_back(int value);
 	void push_index(int value, int index);
 	void show() const; //funkcja do testów czy lista dzia³a
-	/*void pop_front();
+	void pop_front();
 	void pop_back();
 	void pop_index(int index);
-	Node search(int value);*/
+	Node search(int value);
 	~LinkedList();
 };
 
