@@ -9,7 +9,7 @@ int DoubleConnectedList::get_size() const{
 }
 
 void DoubleConnectedList::push_front(int value) {
-	Node* newNode = new Node(value, nullptr, head);
+	DNode* newNode = new DNode(value, nullptr, head);
 	if (head) head->prev = newNode;
 	else tail = newNode; //jezeli lista jest pusta
 	head = newNode;
@@ -17,7 +17,7 @@ void DoubleConnectedList::push_front(int value) {
 }
 
 void DoubleConnectedList::push_back(int value) {
-	Node* newNode = new Node(value, tail, nullptr);
+	DNode* newNode = new DNode(value, tail, nullptr);
 	if (tail) tail->next = newNode;
 	else head = newNode; //jezeli lista by³a pusta
 	tail = newNode;
@@ -35,20 +35,20 @@ void DoubleConnectedList::push_index(int value, int index) {
 	}
 	else {
 		if (index < size / 2) {  //jezeli indeksowi jest blizej do poczatku listy iterujemy od heada
-			Node* current = head;
+			DNode* current = head;
 			for (int i = 0; i < index; i++) {
 				current = current->next;
 			}
-			Node* newNode = new Node(value, current->prev, current);
+			DNode* newNode = new DNode(value, current->prev, current);
 			current->prev->next = newNode;
 			current->prev = newNode;
 		}
 		else {  //jezeli indeksowi jest blizej do konca listy iterujemy od taila
-			Node* current = tail;
-			for (int i = size-1; i > index; i--) {
+			DNode* current = tail;
+			for (int i = size-1; i >= index; i--) {
 				current = current->prev;
 			}
-			Node* newNode = new Node(value, current, current->next);
+			DNode* newNode = new DNode(value, current, current->next);
 			current->next->prev = newNode;
 			current->next = newNode;
 		}
@@ -56,6 +56,26 @@ void DoubleConnectedList::push_index(int value, int index) {
 	}
 }
 
-DoubleConnectedList::~DoubleConnectedList() {
-	while (head) pop_front();
+//funkcja do testow
+void DoubleConnectedList::show() const {
+	DNode* temp = head;
+	while (temp) {
+		std::cout << temp->data << " -> ";
+		temp = temp->next;
+	}
+	std::cout << std::endl;
 }
+
+//funkcja do testow
+void DoubleConnectedList::show_reverse() const {
+	DNode* temp = tail;
+	while (temp) {
+		std::cout << temp->data << " -> ";
+		temp = temp->prev;
+	}
+	std::cout << std::endl;
+}
+
+/*DoubleConnectedList::~DoubleConnectedList() {
+	while (head) pop_front();
+}*/

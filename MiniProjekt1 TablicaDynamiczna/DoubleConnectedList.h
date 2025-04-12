@@ -3,17 +3,17 @@
 #define DOUBLECONNECTEDLIST_H
 #include<vector>
 
-struct Node {
+struct DNode {
 	int data;
-	Node* prev;
-	Node* next;
-	Node(int value, Node* tempPrev, Node* tempNext) :data(value), prev(tempPrev), next(tempNext) {}
+	DNode* prev;
+	DNode* next;
+	DNode(int value, DNode* tempPrev, DNode* tempNext) :data(value), prev(tempPrev), next(tempNext) {}
 };
 
 class DoubleConnectedList {
 private:
-	Node* head;
-	Node* tail;
+	DNode* head;
+	DNode* tail;
 	int size;
 public:
 	DoubleConnectedList();
@@ -23,11 +23,11 @@ public:
 	void push_front(int value);
 	void push_back(int value);
 	void push_index(int value, int index);
-	void pop_front();
+	/*void pop_front();
 	void pop_back();
 	void pop_index(int index);
 	std::vector<int> search(int value);
-	~DoubleConnectedList();
+	~DoubleConnectedList();*/
 };
 
 #endif // DOUBLECONNECTEDLIST_H
