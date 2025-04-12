@@ -1,6 +1,7 @@
 #include"DoubleConnectedList.h"
 #include<iostream>
 #include<vector>
+#include<algorithm>
 
 DoubleConnectedList::DoubleConnectedList():head(nullptr), tail(nullptr), size(0) {}
 
@@ -109,6 +110,46 @@ void DoubleConnectedList::pop_index(int index) {
 		size--;
 	}
 }
+
+std::vector<int> DoubleConnectedList::search(int value) {
+	std::vector<int> indices;
+	int i = 0;
+	int j = size - 1;
+	DNode* left = head;
+	DNode* right = tail;
+
+	// Przeszukujemy listê od obu koñców
+	while (i <= j && left && right) {
+		if (left->data == value) {
+			indices.push_back(i);
+		}
+		// Jeœli oba wskaŸniki wskazuj¹ ten sam element, unikamy podwójnego dodania
+		if (i != j && right->data == value) {
+			indices.push_back(j);
+		}
+		left = left->next;
+		right = right->prev;
+		i++;
+		j--;
+	}
+
+	// uporz¹dkowanie indeksów
+	std::sort(indices.begin(), indices.end());
+	if (indices.empty()) {
+		indices.push_back(-1);
+	}
+	// Do testow wyswietl wektor
+	std::cout << "Indices: [";
+	for (size_t i = 0; i < indices.size(); i++) {
+		std::cout << indices[i];
+		if (i < indices.size() - 1) {
+			std::cout << ", ";
+		}
+	}
+	std::cout << "]" << std::endl;
+	return indices;
+}
+
 
 //funkcja do testow
 void DoubleConnectedList::show() const {

@@ -30,8 +30,8 @@ int main() {
 	List.show();
 	List.pop_index(4);
 	List.show();
-	/*List.search(11);
-	List.search(0);*/
+	List.search(11);
+	List.search(0);
 	std::cout << "size: "<<List.get_size() << std::endl;
 	
 }
