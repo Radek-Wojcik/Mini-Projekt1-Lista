@@ -56,6 +56,60 @@ void DoubleConnectedList::push_index(int value, int index) {
 	}
 }
 
+void DoubleConnectedList::pop_front() {
+	if (!head) return;
+	DNode* temp = head;
+	head = head->next;
+	if (head) { 
+		head->prev = nullptr;
+	}
+	else { //jezeli po usunieciu pierwszego jest pusta
+		tail = nullptr;
+	}
+	delete temp;
+	size--;
+}
+
+void DoubleConnectedList::pop_back() {
+	if (!tail) return;
+	DNode* temp = tail;
+	tail = tail->prev;
+	if (tail) {
+		tail->next = nullptr;
+	}
+	else { //jezeli po usunieciu ostatniego jest pusta
+		head = nullptr;
+	}
+	delete temp;
+	size--;
+}
+
+void DoubleConnectedList::pop_index(int index) {
+	if (index == 0) pop_front();
+	else if (index == size - 1) pop_back;
+	else {
+		if (index < size / 2) {
+			DNode* current = head;
+			for (int i = 0; i < index; i++) {
+				current = current->next;
+			}
+			current->prev->next = current->next;
+			current->next->prev = current->prev;
+			delete current;
+		}
+		else {
+			DNode* current = tail;
+			for (int i = size-1; i > index; i--) {
+				current = current->next;
+			}
+			current->prev->next = current->next;
+			current->next->prev = current->prev;
+			delete current;
+		}
+		size--;
+	}
+}
+
 //funkcja do testow
 void DoubleConnectedList::show() const {
 	DNode* temp = head;
@@ -76,6 +130,8 @@ void DoubleConnectedList::show_reverse() const {
 	std::cout << std::endl;
 }
 
-/*DoubleConnectedList::~DoubleConnectedList() {
+
+
+DoubleConnectedList::~DoubleConnectedList() {
 	while (head) pop_front();
-}*/
+}

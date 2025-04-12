@@ -23,11 +23,11 @@ public:
 	void push_front(int value);
 	void push_back(int value);
 	void push_index(int value, int index);
-	/*void pop_front();
+	void pop_front();
 	void pop_back();
 	void pop_index(int index);
-	std::vector<int> search(int value);
-	~DoubleConnectedList();*/
+	//std::vector<int> search(int value);
+	~DoubleConnectedList();
 };
 
 #endif // DOUBLECONNECTEDLIST_H
