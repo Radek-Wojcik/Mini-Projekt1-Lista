@@ -20,7 +20,7 @@ int main() {
 	List.push_back(20);
 	List.push_back(9);
 	List.show();
-	/*List.pop_front();
+	List.pop_front();
 	List.show();
 	List.pop_back();
 	List.show();
@@ -28,7 +28,9 @@ int main() {
 	List.show();
 	List.push_back(11);
 	List.show();
-	List.search(11);
+	List.pop_index(4);
+	List.show();
+	/*List.search(11);
 	List.search(0);*/
 	std::cout << "size: "<<List.get_size() << std::endl;
 	

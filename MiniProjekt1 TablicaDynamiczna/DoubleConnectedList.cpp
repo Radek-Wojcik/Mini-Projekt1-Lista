@@ -86,7 +86,7 @@ void DoubleConnectedList::pop_back() {
 
 void DoubleConnectedList::pop_index(int index) {
 	if (index == 0) pop_front();
-	else if (index == size - 1) pop_back;
+	else if (index == size - 1) pop_back();
 	else {
 		if (index < size / 2) {
 			DNode* current = head;
@@ -100,7 +100,7 @@ void DoubleConnectedList::pop_index(int index) {
 		else {
 			DNode* current = tail;
 			for (int i = size-1; i > index; i--) {
-				current = current->next;
+				current = current->prev;
 			}
 			current->prev->next = current->next;
 			current->next->prev = current->prev;
