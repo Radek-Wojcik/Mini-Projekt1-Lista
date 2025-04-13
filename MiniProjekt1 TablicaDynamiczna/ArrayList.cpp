@@ -18,6 +18,32 @@ ArrayList::~ArrayList() {
     delete[] array;                                    
 }
 
+// Konstruktor do budowy pliku 
+ArrayList::ArrayList(const ArrayList& other)
+    : capacity(other.capacity), length(other.length)
+{
+    array = new int[capacity];
+    for (int i = 0; i < length; i++) {
+        array[i] = other.array[i];
+    }
+}
+
+// Operator przypisania 
+ArrayList& ArrayList::operator=(const ArrayList& other) {
+    if (this != &other) { 
+        delete[] array;                                 // Usuñ star¹ tablicê 
+
+        capacity = other.capacity;
+        length = other.length;
+        array = new int[capacity];
+
+        for (int i = 0; i < length; i++) {
+            array[i] = other.array[i];
+        }
+    }
+    return *this;
+}
+
 // Metoda powiêkszaj¹ca tablice
 void ArrayList::resize() {
     capacity *= 2;                                      // Podwojenie pojemnoœci
@@ -66,8 +92,32 @@ void ArrayList::insert_random(const int& value) {
     ++length;
 }
 
+// Metoda do usuwania elementu o podanym indeksie
+void ArrayList::remove(int index) {
+    if (index < 0 || index >= length) {
+        cerr << "Indeks poza zakresem!" << endl;
+        return;
+    }
+
+    for (int i = index; i < length - 1; ++i) {         // Przesuniêcie elementów w dó³, aby nadpisaæ usuwany element
+        array[i] = array[i + 1];
+    }
+
+    --length;                                          // Zmniejszenie licznika elementów
+}
+
+// Metoda do wyszukiwania elementu
+int ArrayList::find(int value) const {
+    for (int i = 0; i < length; ++i) {
+        if (array[i] == value) {
+            return i;                                   // Zwraca indeks znalezionego elementu
+        }
+    }
+    return -1; 
+}
+
 // Zabezpieczenie przed odow³aniem do elementu spoza zakresu
-int& ArrayList::operator[](int index) {             
+int& ArrayList::operator[](int index) const {             
     if (index < 0 || index >= length) {                 // Sprawdzenie, czy indeks mieœci siê w zakresie
         cerr << "Indeks poza zakresem!" << endl;        // B³¹d krytyczny, zakoñczenie progrsamu
         exit(EXIT_FAILURE); 
@@ -82,3 +132,4 @@ int ArrayList::size() const {                           // Metoda zwracaj¹ca lic
 int ArrayList::getCapacity() const {                    // Metoda zwracaj¹ca aktualn¹ pojemnoœæ tablicy
     return capacity;
 }
+

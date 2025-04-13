@@ -12,12 +12,18 @@ public:
     ArrayList(int initCapacity = 10);  
     ~ArrayList();
 
+    ArrayList(const ArrayList& other);
+    ArrayList& operator=(const ArrayList& other);
+
     void push_back(const int& value);
     void push_front(const int& value);
     void insert_random(const int& value);
-    int& operator[](int index);            
+    void remove(int index);
+    int find(int value) const;
+    int& operator[](int index) const;
     int size() const;                      
-    int getCapacity() const;               
+    int getCapacity() const;   
+
 };
 
 #endif // ARRAYLIST_H
