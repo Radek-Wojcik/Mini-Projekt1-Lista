@@ -1,30 +1,31 @@
 #pragma once
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
+#include<vector>
 
-template <typename T>
 struct Node {
-	T data;
-	Node<T>* next;
-	Node(T value = 0) : data(value), next(nullptr) {}
-	Node(T value, Node<T>* tempNext) : data(value), next(tempNext) {}
+	int data;
+	Node* next;
+	Node(int value, Node* tempNext) : data(value), next(tempNext) {}
 };
 
-template <typename T>
 class LinkedList {
 private:
-	Node<T>* head;
-	Node<T>* tail;
+	Node* head;
+	Node* tail;
+	int size;
 public:
-	LinkedList() {}
-	void push_front(T value);
-	void push_back(T value);
-	void push_index(T value, int index);
+	LinkedList();
+	int get_size() const;
+	void push_front(int value);
+	void push_back(int value);
+	void push_index(int value, int index);
+	void show() const; //funkcja do testów czy lista dzia³a
 	void pop_front();
 	void pop_back();
 	void pop_index(int index);
-	Node<T> search(T value);
-	~LinkedList() {}
+	std::vector<int> search(int value);
+	~LinkedList();
 };
 
 #endif //LINKEDLIST_H
