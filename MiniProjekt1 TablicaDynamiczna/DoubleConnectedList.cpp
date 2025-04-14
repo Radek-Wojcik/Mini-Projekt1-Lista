@@ -142,15 +142,6 @@ std::vector<int> DoubleConnectedList::search(int value) {
 	if (indices.empty()) {
 		indices.push_back(-1);
 	}
-	// Do testow wyswietl wektor
-	std::cout << "Indices: [";
-	for (size_t i = 0; i < indices.size(); i++) {
-		std::cout << indices[i];
-		if (i < indices.size() - 1) {
-			std::cout << ", ";
-		}
-	}
-	std::cout << "]" << std::endl;
 	return indices;
 }
 

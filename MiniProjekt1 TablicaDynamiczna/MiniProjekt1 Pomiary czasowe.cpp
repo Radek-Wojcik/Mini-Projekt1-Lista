@@ -1,10 +1,13 @@
-﻿/*#include <iostream>
+﻿#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
 #include <fstream>
+#include<string>
 #include <vector>
 #include "ArrayList.h"
+#include "DoubleConnectedList.h"
+#include "LinkedList.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -20,6 +23,7 @@ void generateRandomFile(const string& filename, int count);
 
 int main() {
     int choice = 0;
+    int capacity;
 
         cout << "======== MENU TESTOWANIA ========\n";
         cout << "1. Test tablicy dynamicznej\n";
@@ -36,7 +40,11 @@ int main() {
         case 2: testSingleLinkedList(); break;
         case 3: testDoubleLinkedList(); break;
         case 4: testAllStructures(); break;
-        case 5: generateRandomFile("Liczby.txt", 10); break;
+        case 5: {
+            cout << "Podaj wielkosc generowanego pliku: ";
+            cin >> capacity;
+            generateRandomFile("Liczby.txt", capacity);
+            break; }
         case 0: cout << "Zamykanie programu." << endl; break;
         default: cout << "Nieprawidlowa opcja." << endl; break;
         }
@@ -187,13 +195,273 @@ void testArrayList() {
 
 // ======= TEST LISTY JEDNOKIERUNKOWEJ  =======
 void testSingleLinkedList() {
-
+    LinkedList List;
+    int choice;
+    do {
+        cout << "\n===== TEST TABLICY DYNAMICZNEJ =====\n";
+        cout << "1. Zbuduj z pliku\n";
+        cout << "2. Usun wybrany element\n";
+        cout << "3. Dodaj element\n";
+        cout << "4. Znajdz element\n";
+        cout << "5. Wypelnij tablice losowo\n";
+        cout << "6. Wyswietl tablice\n";
+        cout << "0. Wyjdz\n";
+        cout << "Twoj wybor: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: {
+            List.build_from_file("Lista.txt");
+            break;
+        }
+        case 2: {
+            // Usuwanie wybranego elementu
+            if (List.get_size() == 0) {
+                cout << "Tablica jest pusta\n";
+                break;
+            }
+            int index;
+            cout << "Podaj indeks elementu do usuniecia (0 - " << List.get_size() - 1 << "): ";
+            cin >> index;
+            if (index < 0 || index >= List.get_size()) {
+                cout << "Niepoprawny indeks\n";
+                break;
+            }
+            List.pop_index(index);
+            cout << "Element na indeksie " << index << " zostal usuniety\n";
+            break;
+        }
+        case 3: {
+            // Dodawanie elementu
+            int value;
+            cout << "Jaka wartosc dodac: ";
+            cin >> value;
+            cout << "Gdzie wstawic element?\n";
+            cout << "1. Na poczatku\n";
+            cout << "2. Na koncu\n";
+            cout << "3. W wybranej pozycji\n";
+            cout << "Twoj wybor: ";
+            int posChoice;
+            int index;
+            cin >> posChoice;
+            switch (posChoice) {
+            case 1:
+                List.push_front(value);
+                cout << "Dodano " << value << " na poczatku\n";
+                break;
+            case 2:
+                List.push_back(value);
+                cout << "Dodano " << value << " na koncu\n";
+                break;
+            case 3:
+                cout << "Podaj index na ktorym chcesz umiescic element: ";
+                cin >> index;
+                List.push_index(value, index);
+                cout << "Dodano " << value << " na indeksie: "<<index<<endl;
+                break;
+            default:
+                cout << "Niepoprawny wybor \n";
+            }
+            break;
+        }
+        case 4: {
+            // Wyszukiwanie elementu
+            if (List.get_size() == 0) {
+                cout << "Tablica jest pusta\n";
+                break;
+            }
+            int value;
+            cout << "Podaj wartosc do wyszukania: ";
+            cin >> value;
+            vector<int> indices = List.search(value);
+            std::cout << "Indices: [";
+            for (size_t i = 0; i < indices.size(); i++) {
+                std::cout << indices[i];
+                if (i < indices.size() - 1) {
+                    std::cout << ", ";
+                }
+            }
+            std::cout << "]" << std::endl;
+            break;
+        }
+        case 5: {
+            // Tworzenie losowej listy
+            int size, min, max;
+            cout << "Podaj rozmiar losowej tablicy: ";
+            cin >> size;
+            if (size <= 0) {
+                cout << "Rozmiar musi byc dodatni \n";
+                break;
+            }
+            cout << "Podaj minimalna wartosc zakresu: ";
+            cin >> min;
+            cout << "Podaj maksymalna wartosc zakresu: ";
+            cin >> max;
+            List.generate_random(size, min, max);
+            cout << "Losowa tablica wygenerowana \n";
+            break;
+        }
+        case 6: {
+            // Wyświetlanie listy
+            cout << "\nZawartosc tablicy:\n";
+            cout << "Rozmiar: " << List.get_size() << endl;
+            if (List.get_size() == 0)
+                cout << "Lista jest pusta.\n";
+            else {
+                cout << "Elementy: ";
+                List.show();
+            }
+            break;
+        }
+        case 0:
+            cout << "Wychodze...\n";
+            break;
+        default:
+            cout << "Zly wybor \n";
+        }
+    } while (choice != 0);
 }
 
 // ======= TEST LISTY DWUKIERUNKOWEJ  =======
 void testDoubleLinkedList() {
-
+    DoubleConnectedList List;
+    int choice;
+    do {
+        cout << "\n===== TEST TABLICY DYNAMICZNEJ =====\n";
+        cout << "1. Zbuduj z pliku\n";
+        cout << "2. Usun wybrany element\n";
+        cout << "3. Dodaj element\n";
+        cout << "4. Znajdz element\n";
+        cout << "5. Wypelnij tablice losowo\n";
+        cout << "6. Wyswietl tablice\n";
+        cout << "7. Wyswietl tablice w odwrotnej kolejnosci\n";
+        cout << "0. Wyjdz\n";
+        cout << "Twoj wybor: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: {
+            List.build_from_file("Lista.txt");
+            break;
+        }
+        case 2: {
+            // Usuwanie wybranego elementu
+            if (List.get_size() == 0) {
+                cout << "Tablica jest pusta\n";
+                break;
+            }
+            int index;
+            cout << "Podaj indeks elementu do usuniecia (0 - " << List.get_size() - 1 << "): ";
+            cin >> index;
+            if (index < 0 || index >= List.get_size()) {
+                cout << "Niepoprawny indeks\n";
+                break;
+            }
+            List.pop_index(index);
+            cout << "Element na indeksie " << index << " zostal usuniety\n";
+            break;
+        }
+        case 3: {
+            // Dodawanie elementu
+            int value;
+            cout << "Jaka wartosc dodac: ";
+            cin >> value;
+            cout << "Gdzie wstawic element?\n";
+            cout << "1. Na poczatku\n";
+            cout << "2. Na koncu\n";
+            cout << "3. W wybranej pozycji\n";
+            cout << "Twoj wybor: ";
+            int posChoice;
+            int index;
+            cin >> posChoice;
+            switch (posChoice) {
+            case 1:
+                List.push_front(value);
+                cout << "Dodano " << value << " na poczatku\n";
+                break;
+            case 2:
+                List.push_back(value);
+                cout << "Dodano " << value << " na koncu\n";
+                break;
+            case 3:
+                cout << "Podaj index na ktorym chcesz umiescic element: ";
+                cin >> index;
+                List.push_index(value, index);
+                cout << "Dodano " << value << " na indeksie: " << index << endl;
+                break;
+            default:
+                cout << "Niepoprawny wybor \n";
+            }
+            break;
+        }
+        case 4: {
+            // Wyszukiwanie elementu
+            if (List.get_size() == 0) {
+                cout << "Tablica jest pusta\n";
+                break;
+            }
+            int value;
+            cout << "Podaj wartosc do wyszukania: ";
+            cin >> value;
+            vector<int> indices = List.search(value);
+            std::cout << "Indices: [";
+            for (size_t i = 0; i < indices.size(); i++) {
+                std::cout << indices[i];
+                if (i < indices.size() - 1) {
+                    std::cout << ", ";
+                }
+            }
+            std::cout << "]" << std::endl;
+            break;
+        }
+        case 5: {
+            // Tworzenie losowej listy
+            int size, min, max;
+            cout << "Podaj rozmiar losowej tablicy: ";
+            cin >> size;
+            if (size <= 0) {
+                cout << "Rozmiar musi byc dodatni \n";
+                break;
+            }
+            cout << "Podaj minimalna wartosc zakresu: ";
+            cin >> min;
+            cout << "Podaj maksymalna wartosc zakresu: ";
+            cin >> max;
+            List.generate_random(size, min, max);
+            cout << "Losowa tablica wygenerowana \n";
+            break;
+        }
+        case 6: {
+            // Wyświetlanie listy
+            cout << "\nZawartosc tablicy:\n";
+            cout << "Rozmiar: " << List.get_size() << endl;
+            if (List.get_size() == 0)
+                cout << "Lista jest pusta.\n";
+            else {
+                cout << "Elementy: ";
+                List.show();
+            }
+            break;
+        }
+        case 7: {
+            // Wyswietlanie listy w odwrotnej kolejnosci
+            cout << "\nZawartosc tablicy:\n";
+            cout << "Rozmiar: " << List.get_size() << endl;
+            if (List.get_size() == 0)
+                cout << "Lista jest pusta.\n";
+            else {
+                cout << "Elementy: ";
+                List.show_reverse();
+            }
+            break;
+        }
+        case 0:
+            cout << "Wychodze...\n";
+            break;
+        default:
+            cout << "Zly wybor \n";
+        }
+    } while (choice != 0);
 }
+
 
 // ======= TEST CZASOWY TABLICY DYNAMICZNEJ =======
 void TimetestArrayList() {
@@ -292,4 +560,4 @@ void generateRandomFile(const string& filename, int count) {
 
     file.close();
     cout << "Wygenerowano plik " << filename << " z " << count << " liczbami losowymi." << endl;
-}*/
+}

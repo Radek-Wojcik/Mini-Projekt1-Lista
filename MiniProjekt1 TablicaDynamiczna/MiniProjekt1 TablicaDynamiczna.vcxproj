@@ -132,7 +132,6 @@
     <ClCompile Include="DoubleConnectedList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="MiniProjekt1 Pomiary czasowe.cpp" />
-    <ClCompile Include="testCzyListaDziala.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoubleConnectedList.h" />
