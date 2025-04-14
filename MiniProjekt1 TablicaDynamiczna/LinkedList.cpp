@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include<string>
 
 LinkedList::LinkedList() : head(nullptr), tail(nullptr), size(0) {}
 

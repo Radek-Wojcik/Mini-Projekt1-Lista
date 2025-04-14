@@ -2,6 +2,7 @@
 #ifndef DOUBLECONNECTEDLIST_H
 #define DOUBLECONNECTEDLIST_H
 #include<vector>
+#include<string>
 
 struct DNode {
 	int data;

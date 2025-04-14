@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include<string>
 
 DoubleConnectedList::DoubleConnectedList():head(nullptr), tail(nullptr), size(0) {}
 

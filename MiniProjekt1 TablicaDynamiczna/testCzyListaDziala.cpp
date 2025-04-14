@@ -33,5 +33,8 @@ int main() {
 	List.search(11);
 	List.search(0);
 	std::cout << "size: "<<List.get_size() << std::endl;
-	
+	List.generate_random(5, 0, 10);
+	List.show();
+	List.build_from_file("Lista.txt");
+	List.show();
 }
