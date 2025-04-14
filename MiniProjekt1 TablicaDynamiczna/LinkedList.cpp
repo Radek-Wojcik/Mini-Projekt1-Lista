@@ -1,6 +1,9 @@
 #include"LinkedList.h"
 #include<iostream>
 #include<vector>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 LinkedList::LinkedList() : head(nullptr), tail(nullptr), size(0) {}
 
@@ -134,7 +137,7 @@ std::vector<int> LinkedList::search(int value) {
 	return indices;
 }
 
-//funkcja do testów
+//funkcje do menu
 void LinkedList::show() const {
 	Node* temp = head;
 	while (temp) {
@@ -142,4 +145,48 @@ void LinkedList::show() const {
 		temp = temp->next;
 	}
 	std::cout << std::endl;
+}
+
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
+// Usuwa wszystkie dane z listy (przydatne przed wczytaniem z pliku)
+void LinkedList::clear() {
+	while (head != nullptr) {
+		Node* temp = head;
+		head = head->next;
+		delete temp;
+	}
+	tail = nullptr;
+	size = 0;
+}
+
+// Buduje listê z pliku (czyta wartoœci ca³kowite z pliku)
+void LinkedList::build_from_file(const std::string& filename) {
+	clear(); // Usuwamy istniej¹ce dane
+
+	std::ifstream file(filename);
+	if (!file.is_open()) {
+		std::cerr << "Nie mozna otworzyc pliku: " << filename << std::endl;
+		return;
+	}
+
+	int value;
+	while (file >> value) {
+		push_back(value); // Dodajemy na koniec listy zachowuj¹c kolejnoœæ z pliku
+	}
+
+	file.close();
+}
+
+// Tworzy losow¹ strukturê o podanej wielkoœci
+void LinkedList::generate_random(int count, int minVal, int maxVal) {
+	clear(); // Usuwamy istniej¹ce dane
+
+	std::srand(std::time(nullptr));
+	for (int i = 0; i < count; i++) {
+		int randomValue = minVal + (std::rand() % (maxVal - minVal + 1));
+		push_back(randomValue);
+	}
 }

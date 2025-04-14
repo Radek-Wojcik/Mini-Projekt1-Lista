@@ -20,11 +20,15 @@ public:
 	void push_front(int value);
 	void push_back(int value);
 	void push_index(int value, int index);
-	void show() const; //funkcja do testów czy lista dzia³a
 	void pop_front();
 	void pop_back();
 	void pop_index(int index);
 	std::vector<int> search(int value);
+	//funkcje do menu
+	void show() const; 
+	void clear();
+	void build_from_file(const std::string& filename);
+	void generate_random(int count, int minVal = 0, int maxVal = 100);
 	~LinkedList();
 };
 

@@ -2,6 +2,9 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 DoubleConnectedList::DoubleConnectedList():head(nullptr), tail(nullptr), size(0) {}
 
@@ -151,7 +154,7 @@ std::vector<int> DoubleConnectedList::search(int value) {
 }
 
 
-//funkcja do testow
+//funkcje do menu
 void DoubleConnectedList::show() const {
 	DNode* temp = head;
 	while (temp) {
@@ -161,7 +164,7 @@ void DoubleConnectedList::show() const {
 	std::cout << std::endl;
 }
 
-//funkcja do testow
+
 void DoubleConnectedList::show_reverse() const {
 	DNode* temp = tail;
 	while (temp) {
@@ -171,7 +174,47 @@ void DoubleConnectedList::show_reverse() const {
 	std::cout << std::endl;
 }
 
+// Funkcja czyszcz¹ca listê – usuwa wszystkie elementy
+void DoubleConnectedList::clear() {
+	while (head) {
+		DNode* temp = head;
+		head = head->next;
+		delete temp;
+	}
+	tail = nullptr;
+	size = 0;
+}
 
+// Funkcja buduj¹ca listê z pliku (wczytuje wartoœci ca³kowite z pliku)
+// Najpierw czyœci dotychczasow¹ listê, a nastêpnie dodaje kolejne elementy na koñcu
+void DoubleConnectedList::build_from_file(const std::string& filename) {
+	clear(); // Usuwamy istniej¹ce dane
+
+	std::ifstream file(filename);
+	if (!file.is_open()) {
+		std::cerr << "Nie mozna otworzyc pliku: " << filename << std::endl;
+		return;
+	}
+
+	int value;
+	while (file >> value) {
+		push_back(value); // Dodajemy elementy na koñcu, zachowuj¹c kolejnoœæ z pliku
+	}
+
+	file.close();
+}
+
+// Funkcja tworz¹ca losow¹ strukturê – generuje listê o podanej liczbie elementów
+// Elementy maj¹ losowe wartoœci w przedziale [minVal, maxVal]
+void DoubleConnectedList::generate_random(int count, int minVal, int maxVal) {
+	clear(); // Usuwamy istniej¹ce dane
+
+	std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	for (int i = 0; i < count; i++) {
+		int randomValue = minVal + (std::rand() % (maxVal - minVal + 1));
+		push_back(randomValue);
+	}
+}
 
 DoubleConnectedList::~DoubleConnectedList() {
 	while (head) pop_front();
