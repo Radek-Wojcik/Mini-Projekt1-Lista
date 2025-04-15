@@ -1,6 +1,6 @@
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
-
+#include<vector>
 class ArrayList {
 private:
     int* array;      
@@ -19,7 +19,7 @@ public:
     void push_front(const int& value);
     void insert_random(const int& value, int index);
     void remove(int index);
-    int find(int value) const;
+    std::vector<int> find(int value);
     int& operator[](int index) const;
     int size() const;                      
     int getCapacity() const;   

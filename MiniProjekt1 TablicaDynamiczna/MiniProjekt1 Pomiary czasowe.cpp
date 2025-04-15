@@ -148,11 +148,15 @@ void testArrayList() {
             int value;
             std::cout << "Podaj wartosc do wyszukania: ";
             cin >> value;
-            int index = list.find(value);
-            if (index != -1)
-                std::cout << "Wartosc " << value << " znaleziona na indeksie nr: " << index << "\n";
-            else
-                std::cout << "Wartosc " << value << " nie zostaala znaleziona\n";
+            vector<int> indices = list.find(value);
+            std::cout << "Indices: [";
+            for (size_t i = 0; i < indices.size(); i++) {
+                std::cout << indices[i];
+                if (i < indices.size() - 1) {
+                    std::cout << ", ";
+                }
+            }
+            std::cout << "]" << std::endl;
             break;
         }
         case 5: {

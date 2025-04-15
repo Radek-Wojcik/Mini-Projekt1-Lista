@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include<vector>
 
 #include "ArrayList.h"
 
@@ -105,13 +106,17 @@ void ArrayList::remove(int index) {
 }
 
 // Metoda do wyszukiwania elementu
-int ArrayList::find(int value) const {
+vector<int> ArrayList::find(int value) {
+    vector<int> indices;
     for (int i = 0; i < length; ++i) {
         if (array[i] == value) {
-            return i;                                   // Zwraca indeks znalezionego elementu
+            indices.push_back(array[i]);                                   // Zwraca indeks znalezionego elementu
         }
     }
-    return -1; 
+    if (indices.empty()) {
+        indices.push_back(-1);
+    }
+    return indices; 
 }
 
 // Zabezpieczenie przed odow³aniem do elementu spoza zakresu
