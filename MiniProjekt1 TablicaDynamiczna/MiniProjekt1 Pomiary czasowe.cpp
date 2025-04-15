@@ -472,7 +472,7 @@ void testDoubleLinkedList() {
 
 // ======= TEST CZASOWY TABLICY DYNAMICZNEJ =======
 void TimetestArrayList(ofstream& resultsFile, int dataSize, int randomSearch, int randomIndex) {
-    int iterations = 50;
+    int iterations = 100;
     // Wczytanie danych z pliku "Liczby.txt"
     ifstream file("Liczby.txt");
     if (!file) {
@@ -590,7 +590,7 @@ void TimetestArrayList(ofstream& resultsFile, int dataSize, int randomSearch, in
 
 // ======= TEST CZASOWY LISTY JEDNOKIERUNKOWEJ  =======
 void TimetestSingleLinkedList(ofstream& resultsFile, int dataSize, int randomSearch, int randomIndex) {
-    int iterations = 50;
+    int iterations = 100;
     // Wczytanie danych z pliku "Liczby.txt"
     ifstream file("Liczby.txt");
     if (!file) {
@@ -707,7 +707,7 @@ void TimetestSingleLinkedList(ofstream& resultsFile, int dataSize, int randomSea
 
 // ======= TEST CZASOWY LISTY DWUKIERUNKOWEJ  =======
 void TimetestDoubleLinkedList(ofstream& resultsFile, int dataSize, int randomSearch, int randomIndex) {
-    int iterations = 50;
+    int iterations = 100;
     // Wczytanie danych z pliku "Liczby.txt"
     ifstream file("Liczby.txt");
     if (!file) {
@@ -824,7 +824,7 @@ void TimetestDoubleLinkedList(ofstream& resultsFile, int dataSize, int randomSea
 
 // ======= TEST WSZYSTKICH STRUKTUR PO KOLEI =======
 void testAllStructures() {
-    int tab[10] = { 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000 };
+    int tab[12] = { 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000 };
     int capacity;
     int randomSearch, randomIndex;
     // Utworzenie pliku wyniki.txt i dodanie nagłówków
@@ -837,7 +837,7 @@ void testAllStructures() {
     // Dodanie nagłówków do pliku
     resultsFile << "Struktura\tRozmiar\tpush_front\tpush_back\tpush_index\tpop_front\tpop_back\tpop_random\tsearch" << endl;
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 12; i++) {
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
         capacity = tab[i];
         randomSearch = ((rand() & 0x7FFF) << 15) | (rand() & 0x7FFF);

@@ -13,6 +13,7 @@ int DoubleConnectedList::get_size() const{
 	return size;
 }
 
+//Funkcja dodajaca element na poczatek
 void DoubleConnectedList::push_front(int value) {
 	DNode* newNode = new DNode(value, nullptr, head);
 	if (head) head->prev = newNode;
@@ -21,6 +22,7 @@ void DoubleConnectedList::push_front(int value) {
 	size++;
 }
 
+//Funkcja dodajaca element na koniec
 void DoubleConnectedList::push_back(int value) {
 	DNode* newNode = new DNode(value, tail, nullptr);
 	if (tail) tail->next = newNode;
@@ -29,6 +31,7 @@ void DoubleConnectedList::push_back(int value) {
 	size++;
 }
 
+//funkcja dodajca element na zadany indeks
 void DoubleConnectedList::push_index(int value, int index) {
 	if (index == 0) {
 		push_front(value);
@@ -61,6 +64,7 @@ void DoubleConnectedList::push_index(int value, int index) {
 	}
 }
 
+//funkcja usuwajaca pierwszy element
 void DoubleConnectedList::pop_front() {
 	if (!head) return;
 	DNode* temp = head;
@@ -75,6 +79,7 @@ void DoubleConnectedList::pop_front() {
 	size--;
 }
 
+//funkcja usuwajaca ostatni element
 void DoubleConnectedList::pop_back() {
 	if (!tail) return;
 	DNode* temp = tail;
@@ -89,6 +94,7 @@ void DoubleConnectedList::pop_back() {
 	size--;
 }
 
+//funkcja usuwajaca element na zadanym indeksie
 void DoubleConnectedList::pop_index(int index) {
 	if (index == 0) pop_front();
 	else if (index == size - 1) pop_back();
@@ -115,6 +121,7 @@ void DoubleConnectedList::pop_index(int index) {
 	}
 }
 
+//funkcja zwracajaca wektor z indeksami na ktorych znajdziemy zadana wartosc, jezeli nie ma w liscie zwraca -1
 std::vector<int> DoubleConnectedList::search(int value) {
 	std::vector<int> indices;
 	int i = 0;

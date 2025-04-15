@@ -30,6 +30,7 @@ void LinkedList::push_front(int value) {
 	size++;
 }
 
+//Funkcja dodaj¹ca element na koncu listy, nie zwraca nic
 void LinkedList::push_back(int value) {
 	Node* newNode = new Node(value, nullptr);
 	if (tail != nullptr) {
@@ -42,6 +43,7 @@ void LinkedList::push_back(int value) {
 	size++;
 }
 
+//Funkcja dodaj¹ca element na wybrany index, nie zwraca nic
 void LinkedList::push_index(int value, int index) {
 	if(index==0){  
 		push_front(value); 
@@ -63,6 +65,7 @@ void LinkedList::push_index(int value, int index) {
 	}
 }
 
+//Funkcja usuwajaca element z przodu listy, nie zwraca nic
 void LinkedList::pop_front() {
 	if (head == nullptr) return; //jeœli lista jest pusta
 	Node* temp;
@@ -73,6 +76,7 @@ void LinkedList::pop_front() {
 	if (head == nullptr) tail = nullptr; //je¿eli lista po usuniêciu pusta, zerujemy tail
 }
 
+//Funkcja usuwajaca element na koncu listy, nie zwraca nic
 void LinkedList::pop_back() {
 	if (head == nullptr) return; //jeœli lista jest pusta
 	if (head->next == nullptr) { //jeœli lista zawiera jeden element pop_back = pop_front
@@ -89,6 +93,7 @@ void LinkedList::pop_back() {
 	size--;
 }
 
+//Funkcja usuwajaca element z wybranego indexu, nie zwraca nic
 void LinkedList::pop_index(int index) {
 	if (index == 0) {
 		pop_front();
@@ -108,6 +113,7 @@ void LinkedList::pop_index(int index) {
 	size--;
 }
 
+//funkcja wyszukujaca zadana wartosc zwraca wektor z wartosciami, jezeli nic nie znajdzie wynik to -1
 std::vector<int> LinkedList::search(int value) {
 	std::vector<int> indices;
 	Node* current = head;
