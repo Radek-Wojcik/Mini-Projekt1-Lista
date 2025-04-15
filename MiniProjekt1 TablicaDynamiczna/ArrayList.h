@@ -17,7 +17,7 @@ public:
 
     void push_back(const int& value);
     void push_front(const int& value);
-    void insert_random(const int& value);
+    void insert_random(const int& value, int index);
     void remove(int index);
     int find(int value) const;
     int& operator[](int index) const;

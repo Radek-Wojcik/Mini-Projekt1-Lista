@@ -78,12 +78,10 @@ void ArrayList::push_front(const int& value) {
 }
 
 // Metoda dodaj¹ca element w losowe miejsce tablicy
-void ArrayList::insert_random(const int& value) {
+void ArrayList::insert_random(const int& value, int index) {
     if (length == capacity) {                          // Sprawdzenie pojemnoœci
         resize();
     }
-
-    int index = rand() % (length + 1);                 // Losowy index
 
     for (int i = length; i > index; --i) {             // Przesuniêcie elementów w górê aby zrobiæ miejsce na nowy 
         array[i] = array[i - 1];
