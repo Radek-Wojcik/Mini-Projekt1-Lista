@@ -72,7 +72,7 @@ void testArrayList() {
         switch (choice) {
         case 1: {
             // Budowanie listy z pliku
-            string filename = "Liczby.txt";
+            string filename = "Lista.txt";
             
             ifstream file(filename);
             if (!file) {
